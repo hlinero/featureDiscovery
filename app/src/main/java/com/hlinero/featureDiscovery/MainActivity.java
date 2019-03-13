@@ -61,16 +61,19 @@ public class MainActivity extends AppCompatActivity {
                         // Target #1: Back Arrow --> We need to pass the toolbar
                         TapTarget
                                 .forToolbarNavigationIcon(toolbar, "This is the back button", "It allows you to go back")
+                                .id(1)
                                 .cancelable(false),
 
                         // Target #2: Search Menu Item --> We have to pass the toolbar and the id of the menu item to target.
                         TapTarget
                                 .forToolbarMenuItem(toolbar, R.id.search, "This is a search icon", "It let's you search for things")
+                                .id(2)
                                 .cancelable(false),
 
                         // Target #3: Overflow Menu Item --> We have to pass the toolbar and the id of the menu item to target.
                         TapTarget
                                 .forToolbarOverflow(toolbar, "This shows you more options", "These are not that important")
+                                .id(3)
                                 .cancelable(false)
                 )
                 .listener(new TapTargetSequence.Listener() {
