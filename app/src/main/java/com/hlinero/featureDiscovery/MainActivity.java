@@ -25,22 +25,37 @@ import com.getkeepsafe.taptargetview.TapTargetView;
 public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = MainActivity.class.getSimpleName();
+    private TapTargetSequence tapTargetSequence;
+    private Toolbar toolbar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize the toolbar
+        initToolbar();
+
+        // Initialize the target sequence
+        initTapTargetSequence();
+
+        // Initialize the target view
+        initTapTargetView();
+    }
+
+    private void initToolbar(){
         // Initializing the toolbar
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         // Inflating the toolbar menu
         toolbar.inflateMenu(R.menu.menu_main);
 
         // Setting the back arrow in the toolbar
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp));
+    }
 
+    private void initTapTargetSequence(){
         // Creating a target sequence
-        final TapTargetSequence sequence = new TapTargetSequence(this)
+        tapTargetSequence = new TapTargetSequence(this)
                 .targets(
 
                         // Target #1: Back Arrow --> We need to pass the toolbar
@@ -81,32 +96,34 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,"You canceled the sequence :(",Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
 
+    private void initTapTargetView(){
         // Instead of a sequence, we ca have a single time tap target
         TapTargetView
                 .showFor(this, TapTarget.forView(findViewById(R.id.fab), "Hi there!", "This is a tutorial for feature discovery. ")
-                .cancelable(false)
-                .tintTarget(false), new TapTargetView.Listener() {
-            @Override
-            public void onTargetClick(TapTargetView view) {
-                super.onTargetClick(view);
+                        .cancelable(false)
+                        .tintTarget(false), new TapTargetView.Listener() {
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);
 
-                // Start the sequence of item
-                sequence.start();
-            }
+                        // Start the sequence of item
+                        tapTargetSequence.start();
+                    }
 
-            @Override
-            public void onOuterCircleClick(TapTargetView view) {
-                super.onOuterCircleClick(view);
+                    @Override
+                    public void onOuterCircleClick(TapTargetView view) {
+                        super.onOuterCircleClick(view);
 
-                // Listening to clicks in the outer circle
-                Toast.makeText(view.getContext(), "This is the outer circle", Toast.LENGTH_SHORT).show();
-            }
+                        // Listening to clicks in the outer circle
+                        Toast.makeText(view.getContext(), "This is the outer circle", Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onTargetDismissed(TapTargetView view, boolean userInitiated) {
-                Log.d(TAG, "You dismissed me");
-            }
-        });
+                    @Override
+                    public void onTargetDismissed(TapTargetView view, boolean userInitiated) {
+                        Log.d(TAG, "You dismissed me");
+                    }
+                });
     }
 }
