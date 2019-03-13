@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--Search item-->
     <item
         android:title="Search"
         android:id="@+id/search"
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="always" />
 
+    <!--Overflow item-->
     <item
-        android:title="Overflow items" />
+        android:title="Overflow items"
+        app:showAsAction="never"/>
 </menu>
