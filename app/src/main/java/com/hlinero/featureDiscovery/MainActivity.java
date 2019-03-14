@@ -3,19 +3,9 @@ package com.hlinero.featureDiscovery;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.content.DialogInterface;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
-import android.view.Display;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
